@@ -3,9 +3,11 @@ import { useState } from "react";
 const TripForm = ({ onSubmit }) => {
   const [trip, setTrip] = useState({
     name: "",
+    start: "",
+    end: "",
     destinations: "",
-    persons: 1,
-    days: 1,
+    persons: "",
+    days: "",
     budget: "",
     preferences: ""
   });
@@ -26,6 +28,13 @@ const TripForm = ({ onSubmit }) => {
       <input type="text" name="name" placeholder="Trip Name" value={trip.name}
         onChange={handleChange} className="w-full border p-2 rounded mb-3" required />
 
+        <div className="flex gap-3">
+        <input type="text" name="start" placeholder="Start Location" value={trip.start}
+          onChange={handleChange} className="w-1/2 border p-2 rounded mb-3" />
+        <input type="text" name="end" placeholder="End Location" value={trip.end}
+          onChange={handleChange} className="w-1/2 border p-2 rounded mb-3" />
+        </div>
+
       <input type="text" name="destinations" placeholder="Destinations (comma separated)"
         value={trip.destinations} onChange={handleChange}
         className="w-full border p-2 rounded mb-3" required />
@@ -37,7 +46,7 @@ const TripForm = ({ onSubmit }) => {
           onChange={handleChange} className="w-1/2 border p-2 rounded mb-3" />
       </div>
 
-      <input type="number" name="budget" placeholder="Budget (USD)" value={trip.budget}
+      <input type="number" name="budget" placeholder="Budget (LKR)" value={trip.budget}
         onChange={handleChange} className="w-full border p-2 rounded mb-3" />
 
       <textarea name="preferences" placeholder="Preferences (adventure, food, etc.)"
@@ -45,7 +54,7 @@ const TripForm = ({ onSubmit }) => {
         className="w-full border p-2 rounded mb-3"></textarea>
 
       <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
-        Genarate Plans
+        Add Trip
       </button>
     </form>
   );
