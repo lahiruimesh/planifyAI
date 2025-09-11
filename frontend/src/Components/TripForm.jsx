@@ -20,7 +20,7 @@ const TripForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-md max-w-md mx-auto mt-6">
+    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-md max-w-md mx-auto mt-20">
       <h2 className="text-2xl font-semibold text-blue-600 mb-4">Add Trip</h2>
 
       <input type="text" name="name" placeholder="Trip Name" value={trip.name}
@@ -45,7 +45,7 @@ const TripForm = ({ onSubmit }) => {
         className="w-full border p-2 rounded mb-3"></textarea>
 
       <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
-        Save Trip
+        Genarate Plans
       </button>
     </form>
   );

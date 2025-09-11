@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
+import Signup from './Pages/Signup';
+import TripForm from './Components/TripForm';
 function App() {
   return (
     <Router>
@@ -10,6 +12,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/Login' element={<Login />}/>
+        <Route path='/Signup' element={<Signup />}/>
+        <Route path='/TripForm' element={<TripForm />}/>
       </Routes>
     </Router>
   );
