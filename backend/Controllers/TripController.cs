@@ -1,3 +1,5 @@
+/*this is memory version of TripController.cs, the actual file has been modified to use MongoDB instead of in-memory storage
+
 using Microsoft.AspNetCore.Mvc;
 using backend.Models;
 using System.Collections.Generic;
@@ -44,6 +46,52 @@ namespace backend.Controllers
             var trip = trips.FirstOrDefault(t => t.Id == id);
             if (trip == null) return NotFound();
             trips.Remove(trip);
+            return NoContent();
+        }
+    }
+}*/
+
+using Microsoft.AspNetCore.Mvc;
+using backend.Models;
+using backend.Services;
+
+namespace backend.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class TripController : ControllerBase
+    {
+        private readonly TripService _tripService;
+
+        public TripController(TripService tripService)
+        {
+            _tripService = tripService;
+        }
+
+        [HttpGet]
+        public IActionResult GetAll() => Ok(_tripService.GetAll());
+
+        [HttpGet("{id:length(24)}", Name = "GetTrip")]
+        public IActionResult GetById(string id)
+        {
+            var trip = _tripService.GetById(id);
+            if (trip == null) return NotFound();
+            return Ok(trip);
+        }
+
+        [HttpPost]
+        public IActionResult Create(Trip trip)
+        {
+            _tripService.Create(trip);
+            return CreatedAtRoute("GetTrip", new { id = trip.Id }, trip);
+        }
+
+        [HttpDelete("{id:length(24)}")]
+        public IActionResult Delete(string id)
+        {
+            var trip = _tripService.GetById(id);
+            if (trip == null) return NotFound();
+            _tripService.Delete(id);
             return NoContent();
         }
     }
